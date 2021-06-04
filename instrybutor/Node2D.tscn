@@ -1,11 +1,87 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Node2D.tres" type="TileSet" id=1]
+[ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
+[ext_resource path="res://RichTextLabel2.gd" type="Script" id=3]
+[ext_resource path="res://Node2D.gd" type="Script" id=4]
+[ext_resource path="res://UA.gd" type="Script" id=5]
+[ext_resource path="res://UB.gd" type="Script" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="BaseNode" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="GameMap" type="TileMap" parent="."]
+position = Vector2( 0, -2 )
 rotation = 0.00207206
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 0, 5, 0, 1, 5, 0, 2, 1, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 65536, 6, 0, 65537, 6, 0, 65538, 4, 0, 65539, 6, 0, 65540, 6, 0, 65541, 6, 0, 65542, 6, 0, 65543, 6, 0, 65544, 6, 0, 65545, 6, 0, 131072, 6, 0, 131073, 6, 0, 131074, 2, 0, 131075, 5, 0, 131076, 5, 0, 131077, 5, 0, 131078, 5, 0, 131079, 5, 0, 131080, 1, 0, 131081, 6, 0, 196608, 6, 0, 196609, 6, 0, 196610, 6, 0, 196611, 6, 0, 196612, 0, 0, 196613, 5, 0, 196614, 5, 0, 196615, 5, 0, 196616, 3, 0, 196617, 6, 0, 262144, 6, 0, 262145, 0, 0, 262146, 5, 0, 262147, 5, 0, 262148, 3, 0, 262149, 6, 0, 262150, 6, 0, 262151, 6, 0, 262152, 6, 0, 262153, 6, 0, 327680, 6, 0, 327681, 4, 0, 327682, 6, 0, 327683, 6, 0, 327684, 6, 0, 327685, 6, 0, 327686, 0, 0, 327687, 5, 0, 327688, 1, 0, 327689, 6, 0, 393216, 6, 0, 393217, 4, 0, 393218, 6, 0, 393219, 6, 0, 393220, 6, 0, 393221, 6, 0, 393222, 4, 0, 393223, 6, 0, 393224, 4, 0, 393225, 6, 0, 458752, 6, 0, 458753, 2, 0, 458754, 5, 0, 458755, 5, 0, 458756, 5, 0, 458757, 5, 0, 458758, 3, 0, 458759, 6, 0, 458760, 4, 0, 458761, 6, 0, 524288, 6, 0, 524289, 6, 0, 524290, 6, 0, 524291, 6, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524296, 4, 0, 524297, 6, 0, 589824, 6, 0, 589825, 0, 0, 589826, 5, 0, 589827, 5, 0, 589828, 5, 0, 589829, 5, 0, 589830, 5, 0, 589831, 5, 0, 589832, 3, 0, 589833, 6, 0, 655360, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0 )
+tile_data = PoolIntArray( 0, 5, 0, 1, 5, 0, 2, 1, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 65536, 6, 0, 65537, 6, 0, 65538, 4, 0, 65539, 6, 0, 65540, 6, 0, 65541, 6, 0, 65542, 6, 0, 65543, 6, 0, 65544, 6, 0, 65545, 6, 0, 131072, 6, 0, 131073, 6, 0, 131074, 2, 0, 131075, 5, 0, 131076, 5, 0, 131077, 5, 0, 131078, 5, 0, 131079, 5, 0, 131080, 1, 0, 131081, 6, 0, 196608, 6, 0, 196609, 6, 0, 196610, 6, 0, 196611, 6, 0, 196612, 0, 0, 196613, 5, 0, 196614, 5, 0, 196615, 5, 0, 196616, 3, 0, 196617, 6, 0, 262144, 6, 0, 262145, 0, 0, 262146, 5, 0, 262147, 5, 0, 262148, 3, 0, 262149, 6, 0, 262150, 6, 0, 262151, 6, 0, 262152, 6, 0, 262153, 6, 0, 327680, 6, 0, 327681, 4, 0, 327682, 6, 0, 327683, 6, 0, 327684, 6, 0, 327685, 6, 0, 327686, 0, 0, 327687, 5, 0, 327688, 1, 0, 327689, 6, 0, 393216, 6, 0, 393217, 4, 0, 393218, 6, 0, 393219, 6, 0, 393220, 6, 0, 393221, 6, 0, 393222, 4, 0, 393223, 6, 0, 393224, 4, 0, 393225, 6, 0, 458752, 6, 0, 458753, 2, 0, 458754, 5, 0, 458755, 5, 0, 458756, 5, 0, 458757, 5, 0, 458758, 3, 0, 458759, 6, 0, 458760, 4, 0, 458761, 6, 0, 524288, 6, 0, 524289, 6, 0, 524290, 6, 0, 524291, 6, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524296, 4, 0, 524297, 6, 0, 589824, 6, 0, 589825, 0, 0, 589826, 5, 0, 589827, 5, 0, 589828, 5, 0, 589829, 5, 0, 589830, 5, 0, 589831, 5, 0, 589832, 3, 0, 589833, 6, 0, 655360, 6, 0, 655361, 7, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0 )
+
+[node name="Health_status" type="RichTextLabel" parent="."]
+margin_left = 641.707
+margin_right = 768.0
+margin_bottom = 38.0
+bbcode_text = "Heatlth: 100"
+text = "Heatlth: 100"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money_status" type="RichTextLabel" parent="."]
+margin_left = 640.293
+margin_top = 48.0833
+margin_right = 769.0
+margin_bottom = 86.0833
+bbcode_text = "Money: 0"
+text = "Money: 0"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Units" type="RichTextLabel" parent="."]
+margin_left = 640.0
+margin_top = 96.0
+margin_right = 769.0
+margin_bottom = 111.0
+bbcode_text = "Units:"
+text = "Units:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UA" type="RichTextLabel" parent="."]
+margin_left = 662.919
+margin_top = 110.973
+margin_right = 791.919
+margin_bottom = 125.973
+bbcode_text = "Unit A:"
+text = "Unit A:"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UB" type="RichTextLabel" parent="."]
+margin_left = 663.201
+margin_top = 125.95
+margin_right = 792.201
+margin_bottom = 140.95
+bbcode_text = "Unit B:"
+text = "Unit B:"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemies" type="RichTextLabel" parent="."]
+margin_left = 825.0
+margin_top = 1.0
+margin_right = 1023.0
+margin_bottom = 39.0
+bbcode_text = "Enemies remaining: 10"
+text = "Enemies remaining: 10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
