@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Node2D.tres" type="TileSet" id=1]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
@@ -37,6 +37,7 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13.7989, 41.271 )
+[ext_resource path="res://apple_tree.tscn" type="PackedScene" id=7]
 
 [node name="BaseNode" type="Node2D"]
 script = ExtResource( 4 )
@@ -130,3 +131,5 @@ animation = "down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Train"]
 shape = SubResource( 2 )
+[node name="AppleTree" parent="." instance=ExtResource( 7 )]
+position = Vector2( 224, 544 )
