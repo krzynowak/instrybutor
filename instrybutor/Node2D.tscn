@@ -103,9 +103,9 @@ script = ExtResource( 8 )
 
 [node name="Train" parent="Path2D" instance=ExtResource( 7 )]
 position = Vector2( 0.146961, 31.1884 )
-rotation = 9.73446e-07
 
 [node name="Timer" type="Timer" parent="Path2D"]
 wait_time = 10.0
 autostart = true
+
 [connection signal="timeout" from="Path2D/Timer" to="Path2D" method="_on_Timer_timeout"]
