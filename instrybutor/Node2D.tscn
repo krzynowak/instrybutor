@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Node2D.tres" type="TileSet" id=1]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
@@ -10,18 +10,38 @@
 [ext_resource path="res://graphics/train/train_left.png" type="Texture" id=8]
 [ext_resource path="res://graphics/train/train_up.png" type="Texture" id=9]
 [ext_resource path="res://graphics/train/train_right.png" type="Texture" id=10]
-[ext_resource path="res://Train.gd" type="Script" id=11]
+[ext_resource path="res://apple_tree.tscn" type="PackedScene" id=12]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Area2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+export var speed = 400
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -37,7 +57,6 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13.7989, 41.271 )
-[ext_resource path="res://apple_tree.tscn" type="PackedScene" id=7]
 
 [node name="BaseNode" type="Node2D"]
 script = ExtResource( 4 )
@@ -119,7 +138,8 @@ __meta__ = {
 }
 
 [node name="Train" type="Area2D" parent="."]
-script = ExtResource( 11 )
+position = Vector2( 416, 408 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -131,5 +151,6 @@ animation = "down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Train"]
 shape = SubResource( 2 )
-[node name="AppleTree" parent="." instance=ExtResource( 7 )]
-position = Vector2( 224, 544 )
+
+[node name="AppleTree" parent="." instance=ExtResource( 12 )]
+position = Vector2( 336, 408 )
