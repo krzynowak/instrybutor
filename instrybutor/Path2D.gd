@@ -1,4 +1,4 @@
-extends Node2D
+extends Path2D
 
 
 # Declare member variables here. Examples:
@@ -8,7 +8,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	pass # Replace with function body.
 
 
@@ -16,4 +15,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
+func _on_Timer_timeout():
+	var train = preload("res://Train.tscn").instance()
+	add_child(train)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Node2D.tres" type="TileSet" id=1]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
@@ -6,57 +6,14 @@
 [ext_resource path="res://Node2D.gd" type="Script" id=4]
 [ext_resource path="res://UA.gd" type="Script" id=5]
 [ext_resource path="res://UB.gd" type="Script" id=6]
-[ext_resource path="res://graphics/train/train_down.png" type="Texture" id=7]
-[ext_resource path="res://graphics/train/train_left.png" type="Texture" id=8]
-[ext_resource path="res://graphics/train/train_up.png" type="Texture" id=9]
-[ext_resource path="res://graphics/train/train_right.png" type="Texture" id=10]
+[ext_resource path="res://Train.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Path2D.gd" type="Script" id=8]
 [ext_resource path="res://apple_tree.tscn" type="PackedScene" id=12]
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends Area2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-export var speed = 400
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "down",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 13.7989, 41.271 )
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0.146961, 31.1884, 0, 0, 0, 0, 120.932, 31.1884, 0, 0, 0, 0, 143.953, 33.2282, 0, 0, 0, 0, 149.781, 39.6389, 0, 0, 0, 0, 156.774, 47.5067, 0, 0, 0, 0, 159.251, 60.0369, 0, 0, 0, 0, 159.543, 64.2622, 0, 0, 0, 0, 160.708, 133.178, 0, 0, 0, 0, 170.645, 147.748, 0, 0, 0, 0, 181.864, 156.636, 0, 0, 0, 0, 193.811, 158.384, 0, 0, 0, 0, 511.495, 159.288, 0, 0, 0, 0, 531.31, 167.243, 0, 0, 0, 0, 538.595, 177.005, 0, 0, 0, 0, 543.257, 186.33, 0, 0, 0, 0, 543.257, 195.8, 0, 0, 0, 0, 541.218, 203.813, 0, 0, 0, 0, 538.158, 208.767, 0, 0, 0, 0, 534.078, 212.41, 0, 0, 0, 0, 528.833, 215.761, 0, 0, 0, 0, 520.237, 219.695, 0, 0, 0, 0, 509.892, 222.754, 0, 0, 0, 0, 505.23, 223.046, 0, 0, 0, 0, 321.939, 223.629, 0, 0, 0, 0, 302.824, 228.262, 0, 0, 0, 0, 291.605, 238.607, 0, 0, 0, 0, 290.73, 250.7, 0, 0, 0, 0, 285.631, 263.521, 0, 0, 0, 0, 283.3, 271.68, 0, 0, 0, 0, 275.578, 279.111, 0, 0, 0, 0, 267.419, 286.688, 0, 0, 0, 0, 256.928, 285.959, 0, 0, 0, 0, 252.703, 286.833, 0, 0, 0, 0, 127.809, 287.999, 0, 0, 0, 0, 118.63, 288.727, 0, 0, 0, 0, 111.345, 292.078, 0, 0, 0, 0, 104.206, 297.761, 0, 0, 0, 0, 99.2518, 304.754, 0, 0, 0, 0, 96.6292, 311.165, 0, 0, 0, 0, 96.4252, 445.588, 0, 0, 0, 0, 97.7365, 458.701, 0, 0, 0, 0, 104.876, 467.588, 0, 0, 0, 0, 111.141, 473.853, 0, 0, 0, 0, 121.048, 477.933, 0, 0, 0, 0, 132.267, 478.953, 0, 0, 0, 0, 376.577, 481.226, 0, 0, 0, 0, 407.29, 469.628, 0, 0, 0, 0, 415.449, 452.581, 0, 0, 0, 0, 418.801, 429.706, 0, 0, 0, 0, 418.655, 405.957, 0, 0, 0, 0, 418.655, 381.917, 0, 0, 0, 0, 419.966, 366.036, 0, 0, 0, 0, 427.543, 358.605, 0, 0, 0, 0, 436.139, 354.38, 0, 0, 0, 0, 442.404, 353.505, 0, 0, 0, 0, 452.457, 352.631, 0, 0, 0, 0, 459.305, 352.486, 0, 0, 0, 0, 466.444, 352.777, 0, 0, 0, 0, 503.744, 352.631, 0, 0, 0, 0, 526.181, 352.923, 0, 0, 0, 0, 532.155, 361.082, 0, 0, 0, 0, 542.208, 374.923, 0, 0, 0, 0, 542.208, 400.275, 0, 0, 0, 0, 543.52, 413.242, 0, 0, 0, 0, 543.52, 432.183, 0, 0, 0, 0, 543.17, 451.474, 0, 0, 0, 0, 543.898, 476.534, 0, 0, 0, 0, 543.024, 508.151, 0, 0, 0, 0, 542.296, 570.511, 0, 0, 0, 0, 540.402, 587.703, 0, 0, 0, 0, 534.428, 596.3, 0, 0, 0, 0, 528.309, 601.69, 0, 0, 0, 0, 518.401, 605.916, 0, 0, 0, 0, 511.699, 608.975, 0, 0, 0, 0, 502.665, 608.975, 0, 0, 0, 0, 132.18, 606.936, 0, 0, 0, 0, 122.418, 607.81, 0, 0, 0, 0, 109.305, 612.035, 0, 0, 0, 0, 102.894, 617.863, 0, 0, 0, 0, 99.1061, 623.837, 0, 0, 0, 0, 95.4636, 632.725, 0, 0, 0, 0, 95.4636, 636.221 )
+}
 
 [node name="BaseNode" type="Node2D"]
 script = ExtResource( 4 )
@@ -137,20 +94,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Train" type="Area2D" parent="."]
-position = Vector2( 416, 408 )
-script = SubResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Train"]
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
-animation = "down"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Train"]
-shape = SubResource( 2 )
-
 [node name="AppleTree" parent="." instance=ExtResource( 12 )]
 position = Vector2( 336, 408 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+script = ExtResource( 8 )
+
+[node name="Train" parent="Path2D" instance=ExtResource( 7 )]
+position = Vector2( 0.146961, 31.1884 )
+rotation = 9.73446e-07
+
+[node name="Timer" type="Timer" parent="Path2D"]
+wait_time = 10.0
+autostart = true
+[connection signal="timeout" from="Path2D/Timer" to="Path2D" method="_on_Timer_timeout"]
