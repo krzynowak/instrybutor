@@ -6,8 +6,8 @@ class_name Apple
 # var b = "text"
 
 var velocity  := Vector2.ZERO
-var speed     := 0.0
-var max_range := 100.0
+var speed     := 10.0
+var max_range := 1000.0
 var distance  := 0.0
 
 

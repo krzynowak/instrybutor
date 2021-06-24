@@ -13,7 +13,8 @@ extends PathFollow2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-export (float) var SPEED = 200
+export (float) var SPEED = 50
+var health_points := 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,26 +23,36 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if health_points <= 0:
+		get_parent().get_parent().get_node(\"Health_status\").health -= 1
+		queue_free()
 
 func _physics_process(delta):
 	offset += SPEED * delta
 
 	if unit_offset >= 1:
+		# remove global health point
 		queue_free()
+
+
+func _on_Area2D_area_entered(area):
+	if (\"AppleTree\" in area.get_name()):
+		health_points -= 1
+		print('Train hit!')
+		print(health_points)
 "
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "right",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -72,3 +83,4 @@ animation = "down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

@@ -18,5 +18,4 @@ shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-
 [connection signal="area_entered" from="." to="." method="_on_AppleTree_area_entered"]
