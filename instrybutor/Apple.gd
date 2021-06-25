@@ -7,7 +7,7 @@ class_name Apple
 
 var velocity  := Vector2.ZERO
 var speed     := 10.0
-var max_range := 1000.0
+var max_range := 100.0
 var distance  := 0.0
 
 
@@ -22,4 +22,9 @@ func _process(delta):
 	position += velocity *speed * delta
 	distance += speed * delta
 	if distance >= max_range:
+		queue_free()
+
+
+func _on_Apple_area_entered(area):
+	if not("Apple" in area.get_name()):
 		queue_free()

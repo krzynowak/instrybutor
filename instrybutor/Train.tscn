@@ -37,10 +37,11 @@ func _physics_process(delta):
 
 
 func _on_Area2D_area_entered(area):
-	if (\"AppleTree\" in area.get_name()):
+	if (\"Apple\" in area.get_name()):
 		health_points -= 1
 		print('Train hit!')
 		print(health_points)
+		
 "
 
 [sub_resource type="SpriteFrames" id=2]
@@ -83,4 +84,5 @@ animation = "down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

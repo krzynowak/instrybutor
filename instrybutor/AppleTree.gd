@@ -8,9 +8,9 @@ class_name AppleTree
 var bullet = load("res://Apple.tscn")
 var shoot = true
 var target
-var delay := 0.3
+var delay := 0.2
 var timer := 0.0
-
+var distance := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,13 +27,16 @@ func _process(delta):
 		if timer >= delay:
 			shoot = true
 			timer = 0.0
+		distance = (target.global_position-global_position).length()
+		if distance > 100:
+			shoot = false
 		if shoot:
 			_shoot_to_enemy((target.global_position- global_position).normalized())
 			shoot = false
 
 func _shoot_to_enemy(position):
 	var new_bullet = bullet.instance() as Apple
-	new_bullet.speed = 40
+	new_bullet.speed = 100
 	new_bullet.velocity = position
 	add_child(new_bullet)
 	

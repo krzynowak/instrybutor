@@ -95,7 +95,7 @@ __meta__ = {
 }
 
 [node name="AppleTree" parent="." instance=ExtResource( 12 )]
-position = Vector2( 336, 408 )
+position = Vector2( 216, 104 )
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )
@@ -108,4 +108,5 @@ loop = false
 [node name="Timer" type="Timer" parent="Path2D"]
 wait_time = 60.0
 autostart = true
+
 [connection signal="timeout" from="Path2D/Timer" to="Path2D" method="_on_Timer_timeout"]
