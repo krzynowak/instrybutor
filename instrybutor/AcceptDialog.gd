@@ -1,4 +1,4 @@
-extends Node2D
+extends AcceptDialog
 
 
 # Declare member variables here. Examples:
@@ -10,9 +10,10 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
+func _on_AcceptDialog_visibility_changed():
+	get_parent().get_node("Path2D").disable()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-

@@ -11,11 +11,11 @@ var target
 var delay := 0.2
 var timer := 0.0
 var distance := 0
+onready var typeCnter = get_parent().get_node("UA")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	print("pif paf_ready")
-	pass # Replace with function body.
+	typeCnter.value += 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

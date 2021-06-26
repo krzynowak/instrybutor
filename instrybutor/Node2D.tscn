@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Node2D.tres" type="TileSet" id=1]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
@@ -8,7 +8,11 @@
 [ext_resource path="res://UB.gd" type="Script" id=6]
 [ext_resource path="res://Train.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Path2D.gd" type="Script" id=8]
+[ext_resource path="res://Enemies.gd" type="Script" id=9]
+[ext_resource path="res://Units.gd" type="Script" id=10]
+[ext_resource path="res://AcceptDialog.gd" type="Script" id=11]
 [ext_resource path="res://apple_tree.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Timer.gd" type="Script" id=13]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -55,6 +59,7 @@ margin_right = 769.0
 margin_bottom = 111.0
 bbcode_text = "Units:"
 text = "Units:"
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -90,6 +95,17 @@ margin_right = 1023.0
 margin_bottom = 39.0
 bbcode_text = "Enemies remaining: 10"
 text = "Enemies remaining: 10"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_left = 302.658
+margin_top = 236.733
+margin_right = 700.658
+margin_bottom = 445.733
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,9 +120,11 @@ script = ExtResource( 8 )
 [node name="Train" parent="Path2D" instance=ExtResource( 7 )]
 position = Vector2( 0.146961, 31.1884 )
 loop = false
+SPEED = 100.0
 
 [node name="Timer" type="Timer" parent="Path2D"]
 wait_time = 60.0
 autostart = true
+script = ExtResource( 13 )
 
 [connection signal="timeout" from="Path2D/Timer" to="Path2D" method="_on_Timer_timeout"]

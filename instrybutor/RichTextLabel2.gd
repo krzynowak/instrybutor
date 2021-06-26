@@ -13,15 +13,13 @@ var fps = 0;
 func _ready():
 	set_bbcode(out_msg + str(value));
 	fps = ProjectSettings.get_setting("physics/common/physics_fps");
-	pass # Replace with function body.
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#passive income
-	counter += 1;
-	if(0 == (counter % fps)): value += 2;
-	
+func _process(_delta):
 	set_bbcode(out_msg + str(value));
-	pass
+	if get_parent().get_node("Health_status").health > 0:
+		#passive income
+		counter += 1;
+		if(0 == (counter % fps)): value += 2;

@@ -13,27 +13,37 @@ extends PathFollow2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-export (float) var SPEED = 50
+export (float) var SPEED = 100
 var health_points := 5
+var TRAIN_VAL := 100
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	health_points = 3 + ( randi() % 3 )
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if health_points <= 0:
-		get_parent().get_parent().get_node(\"Health_status\").health -= 1
+func _process(_delta):
+	if health_points < -1:
+		# Train dead subtract one enemy and give money
+		get_parent().get_parent().get_node(\"Money_status\").value += TRAIN_VAL
+		get_parent().get_parent().get_node(\"Enemies\").enemyCount -= 1
 		queue_free()
+		if get_parent().operational:
+			get_parent().addTrain()
 
 func _physics_process(delta):
 	offset += SPEED * delta
 
 	if unit_offset >= 1:
-		# remove global health point
+		# remove global health point and incur some costs for repairs
+		get_parent().get_parent().get_node(\"Money_status\").value -= 2 * TRAIN_VAL
+		get_parent().get_parent().get_node(\"Health_status\").health -= 1
 		queue_free()
+		if get_parent().operational:
+			get_parent().addTrain()
 
 
 func _on_Area2D_area_entered(area):
@@ -41,7 +51,6 @@ func _on_Area2D_area_entered(area):
 		health_points -= 1
 		print('Train hit!')
 		print(health_points)
-		
 "
 
 [sub_resource type="SpriteFrames" id=2]
